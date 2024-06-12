@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+  type: ClusterIP  # note:  not using LoadBalancer because we don't want this accessible from the outside world
+  ports:
+    - protocol: TCP
+      port: 80 # external port, for incoming requests
+      targetPort: 80  #inside the container / internal port
