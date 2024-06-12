@@ -17,5 +17,6 @@ spec:
           image: two4onebill/kub-demo-users:latest
           env:
             - name: AUTH_ADDRESS
-              value: localhost
+              # value: "10.98.182.146"  #This address was retrieved after creating the services and running "kubectl get services" where we can see the CLUSTER-IP for the auth-service.
+              value: "auth-service.default" #servicename.namespace  #if you don't assign the service to a namespace it is assigned to the 'default' namespace
 
