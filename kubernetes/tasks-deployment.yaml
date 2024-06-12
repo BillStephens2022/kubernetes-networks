@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-deployment
+  name: tasks-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: users
+      app: tasks
   template:
     metadata:
       labels:
-        app: users
+        app: tasks
     spec:
       containers:
-        - name: users
-          image: two4onebill/kub-demo-users:latest
+        - name: tasks
+          image: two4onebill/kub-demo-tasks:latest
           env:
             - name: AUTH_ADDRESS
               # value: "10.98.182.146"  #This address was retrieved after creating the services and running "kubectl get services" where we can see the CLUSTER-IP for the auth-service.
               value: "auth-service.default" #servicename.namespace  #if you don't assign the service to a namespace it is assigned to the 'default' namespace
+            - name: TASKS_FOLDER
+              value: tasks
